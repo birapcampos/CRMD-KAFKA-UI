@@ -7,6 +7,10 @@ import { AppComponent } from './crmd-kafka-ui.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 
+import {ButtonModule} from 'primeng/button';
+
+import {TooltipModule} from 'primeng/components/tooltip/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +20,9 @@ import { TableModule } from 'primeng/table';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    ButtonModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

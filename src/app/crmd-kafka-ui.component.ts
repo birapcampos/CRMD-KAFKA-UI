@@ -9,9 +9,9 @@ export class AppComponent {
   title = 'CRMD-KAFKA-UI';
 
   topicos = [
-    {nome: 'NOVO CLINTE', tipo: 'NA', status: 'Ativo', horastart: '18:30'},
-    {nome: 'PROPOSTA', tipo: 'NA', status: 'Ativo', horastart: '19:00'},
-    {nome: 'MANUTENÇÃO', tipo: 'NA', status: 'Ativo', horastart: '20:00'}
+    {nome: 'NOVO CLINTE', tipo: 'Waiting MBIO', status: 'Ativo', horastart: '18:30'},
+    {nome: 'PROPOSTA', tipo: 'Running', status: 'Ativo', horastart: '19:00'},
+    {nome: 'MANUTENÇÃO', tipo: 'Error', status: 'Ativo', horastart: '20:00'}
  ];
 
 }
