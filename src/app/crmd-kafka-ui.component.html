@@ -1,0 +1,24 @@
+<div class="ui-g">
+  <h2>CRMD-KAFKA - Controle de fila por tópico</h2>
+</div>
+<div class="ui-g-12">
+<p-table [value]="topicos">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Tópico</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Hora Start</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-topico>
+      <tr>
+          <td>{{topico.nome}}</td>
+          <td>{{topico.tipo}}</td>
+          <td>{{topico.status}}</td>
+          <td>{{topico.horastart}}</td>
+      </tr>
+  </ng-template>
+</p-table>
+</div>
+<router-outlet></router-outlet>
