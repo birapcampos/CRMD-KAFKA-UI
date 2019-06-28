@@ -9,18 +9,29 @@ import { TableModule } from 'primeng/table';
 
 import {ButtonModule} from 'primeng/button';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
-import { CrmdKafkaUiListaComponent } from './crmd-kafka-ui-lista/crmd-kafka-ui-lista.component';
+import { CrmdKafkaUiListaComponent } from './pages/crmd-kafka-ui-lista/crmd-kafka-ui-lista.component';
 
 import {InputTextareaModule} from 'primeng/inputtextarea';
-
 import { FormsModule } from '@angular/forms';
-import { SetFocusDirective } from './set-focus.directive';
+import {InputMaskModule} from 'primeng/inputmask';
+
+import {ProgressBarModule} from 'primeng/progressbar';
+
+import { ErroAutenticacaoComponent } from './erro-autenticacao/erro-autenticacao.component';
+
+import { CrmdKafkaUiService } from './service/crmd-kafka-ui.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule }    from '@angular/common/http';
+
+import { ToastrModule } from 'ngx-toastr';
+import { HistoricoTopicoComponent } from './pages/historico-topico/historico-topico.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrmdKafkaUiListaComponent,
-    SetFocusDirective
+    ErroAutenticacaoComponent,
+    HistoricoTopicoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +41,13 @@ import { SetFocusDirective } from './set-focus.directive';
     ButtonModule,
     TooltipModule,
     InputTextareaModule,
-    FormsModule
+    FormsModule,
+    InputMaskModule,
+    HttpClientModule,
+    ProgressBarModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [CrmdKafkaUiService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

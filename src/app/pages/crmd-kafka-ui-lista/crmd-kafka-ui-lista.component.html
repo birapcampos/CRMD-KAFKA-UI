@@ -4,7 +4,7 @@
     </div>
     <form #formPrincipal="ngForm" (ngSubmit)="salvar(formPrincipal)" name="frmMotivo">
       <div class="ui-g-12">
-      <p-table [value]="topicos" [paginator]=true [rows]="7" [responsive]="true">
+      <p-table [value]="topicoList" [paginator]=true [rows]="5" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 70px">Id</th>
@@ -12,34 +12,43 @@
                 <th style="width: 150px">Tipo</th>
                 <th style="width: 80px">Status</th>
                 <th style="width: 100px">Hora Start</th>
-                <th style="width: 165px"></th>
+                <th style="width: 255px"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-topico>
             <tr>
                 <td>{{topico.id}}</td>
-                <td>{{topico.nome}}</td>
+                <td>{{topico.topico}}</td>
                 <td>{{topico.tipo}}</td>
                 <td>{{topico.status}}</td>
-                <td>{{topico.horastart}}</td>
-                <td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <p-inputMask mask="99:99" name="horaAgenda" pInputText type="text" [(ngModel)]="topico.horaParada"></p-inputMask>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{topico.horaParada}}
+                      </ng-template>
+                    </p-cellEditor>
+              </td>
+               <td>
                   <button pButton type="button" label="Start" style="margin-right: 10px" class="ui-button-success" pTooltip="Iniciar tópico" tooltipPosition="top" (click)="StartServico(topico.id)" ></button>
-                  <button pButton type="button" label="Stop" class="ui-button-danger" pTooltip="Parar tópico" tooltipPosition="top" (click)="StopServico(topico.id)"></button>
+                  <button pButton type="button" label="Stop" style="margin-right: 10px" class="ui-button-danger" pTooltip="Parar tópico" tooltipPosition="top" (click)="StopServico(topico.id)"></button>
+                  <button pButton type="button" label="Histórico" class="ui-button-info" pTooltip="Histórico" tooltipPosition="top" (click)="HistoricoTopico(topico.id)"></button>
                 </td>
             </tr>
         </ng-template>
       </p-table>
       </div>
-      <div class="ui-g-1">
+      <div class="ui-g-2">
           <p-table  [responsive]="true">
               <ng-template pTemplate="header">
-              <tr><td>Motivo</td></tr>
+              <tr><td>Motivo das alterações</td></tr>
               <tr>
                 <td>
-                  <textarea name="motivo" [(ngModel)]="motivoParada"
+                  <textarea name="motivo" [(ngModel)]="motivoMudanca"
                     rows="4"
                     cols="160"
-                    [disabled]="desabilitaMotivo"
                     required pInputTextarea
                     minlength="5" maxlength="200">
                   </textarea>
