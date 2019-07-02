@@ -6,6 +6,6 @@ export class Topico {
   horaInicio: Date;
   motivoParada: string;
   horaParada: string;
-  datAlteracao:Date;
+  datAlteracao: Date;
   loginUsuario: string;
  }

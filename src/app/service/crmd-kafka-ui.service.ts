@@ -55,9 +55,8 @@ export class CrmdKafkaUiService {
       );
   }
 
-  update(topicos: Topico[]): Observable<string> {
-    console.log('Metodo update : ' + topicos);
-    return this.http.put<string>(this.apiUrl , topicos,  this.httpOptions)
+  update(topicos: Topico[]): Observable<Topico[]> {
+    return this.http.put<Topico[]>(this.apiUrl + "/topics", topicos ,  this.httpOptions)
     .pipe(catchError(this.handleError));
   }
 

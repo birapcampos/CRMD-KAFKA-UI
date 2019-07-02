@@ -39,7 +39,6 @@ export class CrmdKafkaUiListaComponent implements OnInit {
     .subscribe(result =>
       {
         this.topicoList=result;
-        console.log(this.topicoList);
       },
     error => {
      if (error.status == 401) {
@@ -85,7 +84,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
   this.topicoList.forEach(topico =>
   {
      if(idparam == topico.id){
-      topico.status = "Ativo";
+      topico.status = "ATIVO";
       console.log('Start novo Status ' + topico.status);
      }
 
@@ -100,7 +99,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
     this.topicoList.forEach(topico =>
     {
        if(idparam == topico.id){
-        topico.status = "Inativo";
+        topico.status = "INATIVO";
         console.log('Stop Novo Status ' + topico.status);
        }
 
