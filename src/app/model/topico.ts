@@ -3,7 +3,8 @@ export class Topico {
   topico: string;
   tipo: string;
   status: string;
-  horaInicio: Date;
+  horaInicio: string;
+  horaReinicio: string;
   motivoParada: string;
   horaParada: string;
   datAlteracao: Date;

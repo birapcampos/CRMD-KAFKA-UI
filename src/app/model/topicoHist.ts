@@ -1,10 +1,12 @@
 export class TopicoHist {
+  id: any;
   topico: string;
   tipo: string;
   status: string;
-  horaInicio: Date;
+  horaInicio: string;
+  horaReinicio: string;
   motivoParada: string;
   horaParada: string;
-  datAlteracao:Date;
+  datAlteracao: Date;
   loginUsuario: string;
  }

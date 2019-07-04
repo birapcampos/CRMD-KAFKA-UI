@@ -7,7 +7,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, tap, flatMap } from 'rxjs/operators';
 
 import { Topico } from '../model/topico';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { TopicoHist } from '../model/topicoHist';
 
 @Injectable({

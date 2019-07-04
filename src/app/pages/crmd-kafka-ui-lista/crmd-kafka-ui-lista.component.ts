@@ -20,6 +20,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
 
   topicoList: Topico[];
   topicoHistList: TopicoHist[];
+  motivoMudanca: string;
 
   ngOnInit() {
 
@@ -28,8 +29,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
   }
 
   title = 'CRMD-KAFKA-UI';
-  private motivoMudanca: string = '';
-  private progressBar = 'hidden';
+  private clikSalvar : boolean=true;
   private desabilitaMotivo : boolean = true;
   private isFocus : boolean = false;
 
@@ -52,17 +52,18 @@ export class CrmdKafkaUiListaComponent implements OnInit {
 
  salvar(form : NgForm){
     console.log('Salvando: ' + this.motivoMudanca);
-
+    this.clikSalvar=false;
     this.topicoList.forEach(topico => {
       topico.datAlteracao=new Date();
       topico.loginUsuario="Kroll";
       topico.motivoParada=this.motivoMudanca;
-
+      topico.datAlteracao= new Date();
     });
 
     this.crmdKafkaUiService.update(this.topicoList)
       .subscribe(parametro =>  {
         this.toastr.success('Tópicos atualizados com sucesso.');
+        this.clikSalvar=true;
       },
       error => {
 

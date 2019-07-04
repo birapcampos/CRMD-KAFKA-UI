@@ -1,10 +1,10 @@
 <div class="container">
     <div class="ui-g">
-      <h2>CRMD-KAFKA UI - Controle de fila por tópico</h2>
+      <h2 class="page-title">CRMD-KAFKA UI - Controle de fila por tópico</h2>
     </div>
     <form #formPrincipal="ngForm" (ngSubmit)="salvar(formPrincipal)" name="frmMotivo">
       <div class="ui-g-12">
-      <p-table [value]="topicoList" [paginator]=true [rows]="5" [responsive]="true">
+      <p-table [value]="topicoList" [paginator]=true [rows]="6" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 70px">Id</th>
@@ -12,6 +12,7 @@
                 <th style="width: 150px">Tipo</th>
                 <th style="width: 80px">Status</th>
                 <th style="width: 100px">Hora Start</th>
+                <th style="width: 100px">Hora Stop</th>
                 <th style="width: 255px"></th>
             </tr>
         </ng-template>
@@ -24,12 +25,22 @@
                 <td pEditableColumn>
                   <p-cellEditor>
                       <ng-template pTemplate="input">
-                          <p-inputMask mask="99:99" name="horaAgenda" pInputText type="text" [(ngModel)]="topico.horaParada"></p-inputMask>
+                          <p-inputMask mask="99:99" required name="horaStart" pInputText type="text" [(ngModel)]="topico.horaInicio"></p-inputMask>
                       </ng-template>
                       <ng-template pTemplate="output">
-                          {{topico.horaParada}}
+                          {{topico.horaInicio}}
                       </ng-template>
                     </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputMask mask="99:99" required name="horaStop" pInputText type="text" [(ngModel)]="topico.horaParada"></p-inputMask>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{topico.horaParada}}
+                    </ng-template>
+                  </p-cellEditor>
               </td>
                <td>
                   <button pButton type="button" label="Start" style="margin-right: 10px" class="ui-button-success" pTooltip="Iniciar tópico" tooltipPosition="top" (click)="StartServico(topico.id)" ></button>
@@ -46,8 +57,8 @@
               <tr><td>Motivo das alterações</td></tr>
               <tr>
                 <td>
-                  <textarea name="motivo" [(ngModel)]="topicoList[0].motivoParada"
-                    rows="4"
+                  <textarea name="motivo" [(ngModel)]="motivoMudanca"
+                    rows="3"
                     cols="160"
                     required pInputTextarea
                     minlength="5" maxlength="200">
@@ -56,7 +67,7 @@
               </tr>
               <tr>
                 <td>
-                    <button pButton type="submit" label="Salvar"  [disabled]="!formPrincipal.valid" class="ui-button-success" pTooltip="Salva o motivo e atualiza status" tooltipPosition="bottom"></button>
+                    <button pButton *ngIf="clikSalvar" type="submit" label="Salvar"  [disabled]="!formPrincipal.valid" class="ui-button-success" pTooltip="Salva o motivo e atualiza status" tooltipPosition="bottom"></button>
                 </td>
               </tr>
             </ng-template>
