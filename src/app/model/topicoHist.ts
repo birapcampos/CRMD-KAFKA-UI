@@ -1,5 +1,6 @@
 export class TopicoHist {
-  id: any;
+  id: number;
+  dataInclusao: Date;
   topico: string;
   tipo: string;
   status: string;
@@ -7,6 +8,6 @@ export class TopicoHist {
   horaReinicio: string;
   motivoParada: string;
   horaParada: string;
-  datAlteracao: Date;
+  dataAlteracao: Date;
   loginUsuario: string;
  }

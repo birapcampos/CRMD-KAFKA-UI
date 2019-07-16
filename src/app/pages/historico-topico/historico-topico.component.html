@@ -6,7 +6,6 @@
     <p-table [value]="historico" [paginator]=true [rows]="10" [responsive]="true">
       <ng-template pTemplate="header">
           <tr>
-              <th style="width: 50px">Id</th>
               <th style="width: 170px">Dt. Inclusão</th>
               <th>Tópico</th>
               <th>Motivo Mudança</th>
@@ -18,8 +17,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-topicoHist>
           <tr>
-              <td>{{topicoHist.id.id}}</td>
-              <td>{{topicoHist.id.dataInclusao | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td>{{topicoHist.dataInclusao | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
               <td>{{topicoHist.topico}}</td>
               <td style="word-wrap: break-word">{{topicoHist.motivoParada}}</td>
               <td>{{topicoHist.tipo}}</td>

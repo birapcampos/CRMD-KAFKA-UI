@@ -15,7 +15,6 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
 import {InputMaskModule} from 'primeng/inputmask';
 
-import {ProgressBarModule} from 'primeng/progressbar';
 
 import { ErroAutenticacaoComponent } from './erro-autenticacao/erro-autenticacao.component';
 
@@ -25,6 +24,8 @@ import { HttpClientModule }    from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 import { HistoricoTopicoComponent } from './pages/historico-topico/historico-topico.component';
+
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { HistoricoTopicoComponent } from './pages/historico-topico/historico-top
     FormsModule,
     InputMaskModule,
     HttpClientModule,
-    ProgressBarModule,
+    ProgressSpinnerModule,
     ToastrModule.forRoot()
   ],
   providers: [CrmdKafkaUiService,CookieService],

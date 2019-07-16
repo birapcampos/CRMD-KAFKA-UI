@@ -30,6 +30,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
 
   title = 'CRMD-KAFKA-UI';
   private clikSalvar : boolean=true;
+  private progressBar : boolean=false;
   private desabilitaMotivo : boolean = true;
   private isFocus : boolean = false;
 
@@ -53,6 +54,7 @@ export class CrmdKafkaUiListaComponent implements OnInit {
  salvar(form : NgForm){
     console.log('Salvando: ' + this.motivoMudanca);
     this.clikSalvar=false;
+    this.progressBar=true;
     this.topicoList.forEach(topico => {
       topico.datAlteracao=new Date();
       topico.loginUsuario="Kroll";
@@ -64,13 +66,17 @@ export class CrmdKafkaUiListaComponent implements OnInit {
       .subscribe(parametro =>  {
         this.toastr.success('Tópicos atualizados com sucesso.');
         this.clikSalvar=true;
+        this.progressBar=false;
       },
       error => {
 
         if (error.status == 401) {
+          this.progressBar=false;
             setTimeout(() => {this.router.navigate(['/erroAutenticacao']);}, 10);
+
         }
         else{
+            this.progressBar=false;
             this.toastr.success('Erro Status : ' + error.status, ' Mensagem: ' + error.message);
         }
       }

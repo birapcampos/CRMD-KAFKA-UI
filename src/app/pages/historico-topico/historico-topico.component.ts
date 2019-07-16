@@ -36,6 +36,8 @@ export class HistoricoTopicoComponent implements OnInit {
           this.historico=result;
           console.log('Buscando histórico de tópicos hist compoment...');
           console.log(this.historico);
+          console.log("ID : " + this.historico[0].id);
+          console.log("Inclusao : " + this.historico[0].dataInclusao);
         },
       error => {
        if (error.status == 401) {

@@ -51,7 +51,7 @@
         </ng-template>
       </p-table>
       </div>
-      <div class="ui-g-2">
+      <div class="ui-g-12">
           <p-table  [responsive]="true">
               <ng-template pTemplate="header">
               <tr><td>Motivo das alterações</td></tr>
@@ -68,6 +68,11 @@
               <tr>
                 <td>
                     <button pButton *ngIf="clikSalvar" type="submit" label="Salvar"  [disabled]="!formPrincipal.valid" class="ui-button-success" pTooltip="Salva o motivo e atualiza status" tooltipPosition="bottom"></button>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">
+                    <p-progressSpinner *ngIf="progressBar" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
                 </td>
               </tr>
             </ng-template>
