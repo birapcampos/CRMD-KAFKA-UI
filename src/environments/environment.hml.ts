@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8082/crmd/",
+  apiUrl: "http://bcodomdmapp01:8098",
   nomeCookie: "PortalOriginal"
 };

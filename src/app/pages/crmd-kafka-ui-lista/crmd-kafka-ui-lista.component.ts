@@ -1,8 +1,9 @@
 import { CrmdKafkaUiService } from '../../service/crmd-kafka-ui.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SystemJsNgModuleLoader } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { Topico } from '../../model/topico';
+import { TopicoSave } from '../../model/topicoSave';
 import { TopicoHist } from '../../model/topicoHist';
 import { Router } from '@angular/router';
 
@@ -19,7 +20,9 @@ export class CrmdKafkaUiListaComponent implements OnInit {
             private toastr: ToastrService ) { }
 
   topicoList: Topico[];
+  topicoListSave: TopicoSave[] = new Array();
   topicoHistList: TopicoHist[];
+  topicoSave : TopicoSave;
   motivoMudanca: string;
 
   ngOnInit() {
@@ -56,13 +59,30 @@ export class CrmdKafkaUiListaComponent implements OnInit {
     this.clikSalvar=false;
     this.progressBar=true;
     this.topicoList.forEach(topico => {
+
+    this.topicoSave = new TopicoSave();
+    this.topicoSave.id=topico.id;
+    this.topicoSave.status=topico.status;
+    this.topicoSave.horaInicio=topico.horaInicio;
+    this.topicoSave.horaParada=topico.horaParada;
+    this.topicoSave.motivoParada=topico.motivoParada;
+    this.topicoSave.loginUsuario="Kroll";
+
+    this.topicoListSave.push(this.topicoSave);
+
+      /*
       topico.datAlteracao=new Date();
       topico.loginUsuario="Kroll";
       topico.motivoParada=this.motivoMudanca;
       topico.datAlteracao= new Date();
+      */
     });
 
-    this.crmdKafkaUiService.update(this.topicoList)
+    this.topicoListSave.forEach(topicosave => {
+      console.log(topicosave);
+    });
+
+    this.crmdKafkaUiService.update(this.topicoListSave)
       .subscribe(parametro =>  {
         this.toastr.success('Tópicos atualizados com sucesso.');
         this.clikSalvar=true;

@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8080/crmd",
+  apiUrl: "http://localhost:8098",
   nomeCookie: "PortalOriginal"
 };

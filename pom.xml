@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	
+    <artifactId>crmd-kafka-ui</artifactId>
+    <groupId>crmd-kafka-ui</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+	<url>http://maven.apache.org</url>
+   		
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   	    <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+	
+	<profiles>
+		<profile>
+		    <id>dev</id>
+		    <properties>
+				<activatedProperties>dev</activatedProperties>
+				<environment>dev</environment>
+		    </properties>
+		    <activation>
+		    	<activeByDefault>true</activeByDefault>
+		    </activation>
+		</profile>
+		<profile>
+		    <id>homol</id>
+		    <properties>
+				<activatedProperties>homol</activatedProperties>
+				<environment>hom</environment>
+		    </properties>
+		</profile>
+		<profile>
+		    <id>prod</id>
+		    <properties>
+				<activatedProperties>prod</activatedProperties>
+				<environment>prod</environment>
+		    </properties>
+		</profile>
+	 </profiles>
+	 
+	 <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/com.github.eirslett/frontend-maven-plugin -->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.7.5</version>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v10.15.1</nodeVersion>
+                            <npmVersion>6.4.1</npmVersion>
+                            <installDirectory>resources/install/</installDirectory>
+                            <workingDirectory>resources/install/</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>resources/install/</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build --configuration -${environment}</arguments>
+                            <workingDirectory>resources/install/</workingDirectory>
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>dist/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.parent.basedir}/src/</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>	
+	
+	
+	<distributionManagement>
+        <repository>
+          <id>Releases</id>
+          <name>Banco Original</name>
+          <url>https://alm.original.com.br/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>Snapshots</id>
+          <name>Banco Original</name>
+          <url>https://alm.original.com.br/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+		
+</project>
